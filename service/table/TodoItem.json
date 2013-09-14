@@ -2,16 +2,16 @@
   "routes": {
     "/": {
       "insert": {
-        "permission": "application"
+        "permission": "user"
       },
       "read": {
-        "permission": "application"
+        "permission": "user"
       },
       "update": {
-        "permission": "application"
+        "permission": "user"
       },
       "delete": {
-        "permission": "application"
+        "permission": "user"
       }
     }
   }
