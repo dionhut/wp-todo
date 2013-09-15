@@ -1,13 +1,15 @@
-exports.pushTileIncompleteCount = function(userId) {
+var tables = require('tables');
+
+exports.pushTileIncompleteCount = function(request, userId) {
 	// Get the number unchecked items for this user
-	var todoItems = tables.getTable("todoItem");
+	var todoItems = request.tables.getTable("todoItem");
 	todoItems.where({
 		userId: userId,
 		Complete: false
 	}).read({
 		success: function(results) {
 			if(results.length > 0) {
-				push.mpns.sendTile(item.channel, {
+				request.push.mpns.sendTile(item.channel, {
 					count: results.length,
 					title: "Todo"
 				}, {
@@ -16,7 +18,7 @@ exports.pushTileIncompleteCount = function(userId) {
 					}
 				});
 			} else {
-				push.mpns.sendTile(item.channel, {
+				request.push.mpns.sendTile(item.channel, {
 					title: "Todo"
 				}, {
 					success: function(pushResponse) {
