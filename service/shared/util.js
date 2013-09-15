@@ -7,10 +7,12 @@ exports.pushTileIncompleteCount = function(userId, channel, options) {
 	}).read({
 		success: function(results) {
 			console.log("Incomplete items:%j", results);
-			options.push.mpns.sendTile(channel, {
-				count: results.length || 0,
+			var payload = {
+				count: results.length,
 				title: "Todo"
-			}, {
+			};
+			console.log(payload);
+			options.push.mpns.sendTile(channel, payload, {
 				success: function(pushResponse) {
 					console.log("Sent push:", pushResponse);
 				}
