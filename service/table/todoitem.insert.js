@@ -7,7 +7,10 @@ function insert(item, user, request) {
 
 			// Push the count of incomplete items to tile.
 			var util = require("../shared/util.js");
-			util.pushTileIncompleteCount(request, user.userId);
+			util.pushTileIncompleteCount(user.userId, {
+				tables: tables,
+				push: push
+			});
 		}
 	});
 }
