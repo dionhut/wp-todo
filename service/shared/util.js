@@ -1,5 +1,6 @@
 exports.pushTileIncompleteCount = function(request, userId) {
 	// Get the number unchecked items for this user
+	console.log(request.service);
 	var todoItems = request.service.tables.getTable("todoItem");
 	todoItems.where({
 		userId: userId,
