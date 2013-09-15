@@ -1,5 +1,3 @@
-var tables = require('tables');
-
 exports.pushTileIncompleteCount = function(request, userId) {
 	// Get the number unchecked items for this user
 	var todoItems = request.tables.getTable("todoItem");
