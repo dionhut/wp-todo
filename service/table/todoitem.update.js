@@ -1,4 +1,4 @@
-function insert(item, user, request) {
+function update(item, user, request) {
 	request.execute({
 		success: function () {
 			// Write to the response and then send the notification in the background
