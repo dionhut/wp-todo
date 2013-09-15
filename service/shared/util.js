@@ -6,6 +6,7 @@ exports.pushTileIncompleteCount = function(userId, channel, options) {
 		Complete: false
 	}).read({
 		success: function(results) {
+			console.log("Incomplete items:%j", results);
 			options.push.mpns.sendTile(channel, {
 				count: results.length || 0,
 				title: "Todo"
