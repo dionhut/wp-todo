@@ -6,24 +6,14 @@ exports.pushTileIncompleteCount = function(userId, channel, options) {
 		Complete: false
 	}).read({
 		success: function(results) {
-			if(results.length > 0) {
-				options.push.mpns.sendTile(channel, {
-					count: results.length,
-					title: "Todo"
-				}, {
-					success: function(pushResponse) {
-						console.log("Sent push:", pushResponse);
-					}
-				});
-			} else {
-				options.push.mpns.sendTile(channel, {
-					title: "Todo"
-				}, {
-					success: function(pushResponse) {
-						console.log("Sent push (0 count):", pushResponse);
-					}
-				});
-			}
+			options.push.mpns.sendTile(channel, {
+				count: results.length,
+				title: "Todo"
+			}, {
+				success: function(pushResponse) {
+					console.log("Sent push:", pushResponse);
+				}
+			});
 		}
 	});
 };
