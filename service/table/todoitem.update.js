@@ -1,7 +1,6 @@
 function insert(item, user, request) {
-	item.userId = user.userId;
-    request.execute({
-        success: function () {
+	request.execute({
+		success: function () {
 			// Write to the response and then send the notification in the background
 			request.respond();
 
