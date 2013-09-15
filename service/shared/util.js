@@ -1,4 +1,4 @@
-exports.pushTileIncompleteCount = function(userId, options) {
+exports.pushTileIncompleteCount = function(userId, channel, options) {
 	// Get the number unchecked items for this user
 	var todoItems = options.tables.getTable("todoItem");
 	todoItems.where({
@@ -7,7 +7,7 @@ exports.pushTileIncompleteCount = function(userId, options) {
 	}).read({
 		success: function(results) {
 			if(results.length > 0) {
-				options.push.mpns.sendTile(item.channel, {
+				options.push.mpns.sendTile(channel, {
 					count: results.length,
 					title: "Todo"
 				}, {
@@ -16,7 +16,7 @@ exports.pushTileIncompleteCount = function(userId, options) {
 					}
 				});
 			} else {
-				options.push.mpns.sendTile(item.channel, {
+				options.push.mpns.sendTile(channel, {
 					title: "Todo"
 				}, {
 					success: function(pushResponse) {
