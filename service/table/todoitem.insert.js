@@ -1,7 +1,7 @@
 function insert(item, user, request) {
 	item.userId = user.userId;
 
-	if(item.resourceName && item.resourceName.length > 0) {
+	if(item.photoName && item.photoName.length > 0) {
 		var azure = require('azure');
 		var blobService = azure.createBlobService("wptodo", "vYX3v/kZcFsgNlVLgkj6prW+fL98a6jIX1ZqTh8YKi7Bmq4V4Ld3QHIp8WD4/mR6XJSTpemosE4nutYDrkQduA==");
 
@@ -11,7 +11,8 @@ function insert(item, user, request) {
 		        Expiry: azure.date.minutesFromNow(60)
 		    }
 		};
-		item.SAS = blobService.getBlobUrl("photos", item.resourceName, sharedAccessPolicy);
+		item.photoContainer = "photos"
+		item.photoSAS = blobService.getBlobUrl(item.photoContainer, item.photoName, sharedAccessPolicy);
 	}
 
     request.execute({
