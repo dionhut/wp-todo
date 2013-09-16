@@ -13,7 +13,7 @@ function insert(item, user, request) {
     //Create the container if it does not exist
     //we will use public read access for the blobs and will use a SAS to upload        
     var blobService = azure.createBlobService(accountName, accountKey);
-    blobService.createContainerIfNotExists(item.containerName, {publicAccessLevel : 'blob'}, function(error) {            
+    blobService.createContainerIfNotExists(container, {publicAccessLevel : 'blob'}, function(error) {            
         if(!error){
             // Container exists now define a policy that provides write access                      
             // that starts immediately and expires in 5 mins        
