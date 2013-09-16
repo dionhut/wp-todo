@@ -7,12 +7,12 @@ function insert(item, user, request) {
 		console.log("blobService:%j", blobService);
 		console.log("azure:%j", azure);
 		//create a SAS that expires in an hour
-		var sharedAccessPolicy = { 
-		    AccessPolicy: {
-		        Expiry: azure.date.minutesFromNow(60)
-		    }
-		};
-		item.photoSAS = blobService.getBlobUrl(item.photoContainer, item.photoName, sharedAccessPolicy);
+		// var sharedAccessPolicy = { 
+		//     AccessPolicy: {
+		//         Expiry: azure.date.minutesFromNow(60)
+		//     }
+		// };
+		item.photoSAS = blobService.getBlobUrl(item.photoContainer, item.photoName);
 		console.log("photoSAS:%j", photoSAS);
 	}
 
