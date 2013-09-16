@@ -6,13 +6,13 @@ function insert(item, user, request) {
 
     var accountName = 'wptodo';
     var accountKey = 'vYX3v/kZcFsgNlVLgkj6prW+fL98a6jIX1ZqTh8YKi7Bmq4V4Ld3QHIp8WD4/mR6XJSTpemosE4nutYDrkQduA==';         
-    //var host =   accountName + '.blob.core.windows.net';
+    var host =   accountName + '.blob.core.windows.net';
     var container = "photos"
     var canonicalizedResource = '/' +  container + '/' + item.photoName;
     
     //Create the container if it does not exist
     //we will use public read access for the blobs and will use a SAS to upload        
-    var blobService = azure.createBlobService(accountName, accountKey);
+    var blobService = azure.createBlobService(accountName, accountKey, host);
     blobService.createContainerIfNotExists(container, {publicAccessLevel : 'blob'}, function(error) {            
         if(!error){
             // Container exists now define a policy that provides write access                      
