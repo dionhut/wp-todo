@@ -1,5 +1,4 @@
-var azure = require('azure'); 
-var qs = require('querystring');
+var util = require("../shared/util.js");
 
 function insert(item, user, request) {
 	item.userId = user.userId;
@@ -49,7 +48,6 @@ function insert(item, user, request) {
 					request.respond();
 
 					// Push the count of incomplete items to tile.
-					var util = require("../shared/util.js");
 					util.pushTileIncompleteCount(user.userId, item.channel, {
 						tables: tables,
 						push: push
