@@ -4,6 +4,7 @@ function insert(item, user, request) {
 	if(item.photoName && item.photoName.length > 0) {
 		var azure = require('azure');
 		var blobService = azure.createBlobService("wptodo", "vYX3v/kZcFsgNlVLgkj6prW+fL98a6jIX1ZqTh8YKi7Bmq4V4Ld3QHIp8WD4/mR6XJSTpemosE4nutYDrkQduA==");
+		console.log("blobService:%j", blobService);
 
 		//create a SAS that expires in an hour
 		var sharedAccessPolicy = { 
@@ -12,6 +13,7 @@ function insert(item, user, request) {
 		    }
 		};
 		item.photoSAS = blobService.getBlobUrl(item.photoContainer, item.photoName, sharedAccessPolicy);
+		console.log("photoSAS:%j", photoSAS);
 	}
 
     request.execute({
