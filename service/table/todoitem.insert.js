@@ -9,7 +9,7 @@ function insert(item, user, request) {
 		expires.setMinutes(expires.getMinutes() + 60);
 		var sharedAccessPolicy = { 
 		    AccessPolicy: {
-		        Expiry: azure.date.minutesFromNow(60)
+		        Expiry: expires
 		    }
 		};
 		console.log("sharedAccessPolicy:%j", sharedAccessPolicy);
