@@ -22,7 +22,7 @@ exports.pushTileIncompleteCount = function(userId, channel, options) {
 	});
 };
 
-exports.getPhotoSAS(item, options) {
+exports.getPhotoSAS = function(item, options) {
     var accountName = 'wptodo';
     var accountKey = 'vYX3v/kZcFsgNlVLgkj6prW+fL98a6jIX1ZqTh8YKi7Bmq4V4Ld3QHIp8WD4/mR6XJSTpemosE4nutYDrkQduA==';         
     var host =   accountName + '.blob.core.windows.net';
