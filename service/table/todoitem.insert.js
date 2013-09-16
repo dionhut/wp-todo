@@ -4,14 +4,16 @@ function insert(item, user, request) {
 	if(item.photoName && item.photoName.length > 0) {
 		var azure = require('azure');
 		var blobService = azure.createBlobService("wptodo", "vYX3v/kZcFsgNlVLgkj6prW+fL98a6jIX1ZqTh8YKi7Bmq4V4Ld3QHIp8WD4/mR6XJSTpemosE4nutYDrkQduA==");
-		console.log("blobService:%j", blobService);
 		//create a SAS that expires in an hour
-		// var sharedAccessPolicy = { 
-		//     AccessPolicy: {
-		//         Expiry: azure.date.minutesFromNow(60)
-		//     }
-		// };
-		var photoSAS = blobService.getBlobUrl("photos", item.photoName);
+		var expires = new Date();
+		expires.setMinutes(expires.getMinutes() + 60);
+		var sharedAccessPolicy = { 
+		    AccessPolicy: {
+		        Expiry: azure.date.minutesFromNow(60)
+		    }
+		};
+		console.log("sharedAccessPolicy:%j", sharedAccessPolicy);
+		var photoSAS = blobService.getBlobUrl("photos", item.photoName, sharedAccessPolicy);
 		console.log("photoSAS:%j", photoSAS);
 		item.photoSAS = photoSAS.baseUrl + photoSAS.path;
 	}
