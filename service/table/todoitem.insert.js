@@ -11,7 +11,6 @@ function insert(item, user, request) {
 		        Expiry: azure.date.minutesFromNow(60)
 		    }
 		};
-		item.photoContainer = "photos"
 		item.photoSAS = blobService.getBlobUrl(item.photoContainer, item.photoName, sharedAccessPolicy);
 	}
 
