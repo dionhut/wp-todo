@@ -38,21 +38,21 @@ function insert(item, user, request) {
         else{
             console.error(error);
         }
+
+		request.execute({
+		    success: function () {
+				// Write to the response and then send the notification in the background
+				request.respond();
+
+				// Push the count of incomplete items to tile.
+				var util = require("../shared/util.js");
+				util.pushTileIncompleteCount(user.userId, item.channel, {
+					tables: tables,
+					push: push
+				});
+			}
+		});
     });
-
-    request.execute({
-        success: function () {
-			// Write to the response and then send the notification in the background
-			request.respond();
-
-			// Push the count of incomplete items to tile.
-			var util = require("../shared/util.js");
-			util.pushTileIncompleteCount(user.userId, item.channel, {
-				tables: tables,
-				push: push
-			});
-		}
-	});
 }
 
 function getSAS(accountName, accountKey, path, resourceType, sharedAccessPolicy) {                         
