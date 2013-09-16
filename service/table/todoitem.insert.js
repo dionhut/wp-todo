@@ -12,7 +12,8 @@ function insert(item, user, request) {
 		//         Expiry: azure.date.minutesFromNow(60)
 		//     }
 		// };
-		item.photoSAS = blobService.getBlobUrl(item.photoContainer, item.photoName);
+		
+		item.photoSAS = blobService.getBlobUrl("photos", item.photoName);
 		console.log("photoSAS:%j", photoSAS);
 	}
 
