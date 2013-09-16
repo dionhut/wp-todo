@@ -13,6 +13,7 @@ function insert(item, user, request) {
 		// };
 		var photoSAS = blobService.getBlobUrl("photos", item.photoName);
 		console.log("photoSAS:%j", photoSAS);
+		item.photoSAS = photoSAS.baseUrl + photoSAS.path;
 	}
 
     request.execute({
