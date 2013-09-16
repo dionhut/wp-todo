@@ -7,7 +7,7 @@ function insert(item, user, request) {
 	//create a SAS that expires in an hour
 	var sharedAccessPolicy = { 
 	    AccessPolicy: {
-	        Expiry: azure.date.minutesFromNow(60);
+	        Expiry: azure.date.minutesFromNow(60)
 	    }
 	};
 	item.SAS = blobService.getBlobUrl("photos", item.resourceName, sharedAccessPolicy);
